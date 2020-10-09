@@ -85,22 +85,11 @@ describe Volunteer do
       volunteer1.save
       volunteer2 = Volunteer.new({:name => 'Joe', :project_id => 1, :id => nil})
       volunteer2.save
-      volunteer2.update("Joseph", 1)
+      volunteer2.update("Joseph")
       expect(volunteer2.name).to(eq("Joseph"))
     end
   end
   
-  describe('#update') do
-    it('updates a volunteer entry by name and project_id') do
-      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
-      volunteer1.save
-      volunteer2 = Volunteer.new({:name => 'Joe', :project_id => 1, :id => nil})
-      volunteer2.save
-      volunteer2.update("Joseph", 2)
-      expect(volunteer2.project_id).to(eq(2))
-    end
-  end 
-
   describe('.find_by_project') do
     it('find volunteer(s) by corresponding project_id.') do
       new_project = Project.new({:title => "Cleanup", :id => nil})
