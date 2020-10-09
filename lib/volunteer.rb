@@ -2,10 +2,10 @@ class Volunteer
   attr_reader :id
   attr_accessor :name
 
-  def initialize(attributes) do
+  def initialize(attributes) 
     @id = attributes.fetch(:id)
     @name = attributes.fetch(:name)
-    
+
   end
 
   def self.all
@@ -31,3 +31,5 @@ class Volunteer
   def update
 
   end  
+
+end  
