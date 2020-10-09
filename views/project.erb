@@ -21,7 +21,7 @@
 <br><br>
 <h3> Volunteers </h3>
 <br><br>
-  <% if @Project.volunteers.any? %>
+  <% if @project.volunteers.any? %>
     <ul>
       <% @Project.volunteers.each do |volunteer| %> 
       <li><a href="/volunteers/<%= volunteer[0].id %>"><%= volunteer[0].name %></a></li>

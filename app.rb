@@ -41,8 +41,8 @@ end
 patch('/projects/:id') do
   @project = Project.find(params[:id].to_i())
   title = params[:project_title] 
-  @project.update({:title => title})
-  redirect to('/projects/#{params[:id].to_i()}')
+  @project.update(title)
+  redirect to("/projects/#{params[:id].to_i()}")
 end
 
 post('/projects/:id') do
