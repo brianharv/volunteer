@@ -100,4 +100,5 @@ describe Volunteer do
       expect(volunteer2.project_id).to(eq(2))
     end
   end 
+  
 end
