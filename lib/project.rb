@@ -24,6 +24,14 @@ class Project
    end
    results
   end
+
+  def ==(project_to_compare)
+    if project_to_compare != nil
+      (self.title() == project_to_compare.title()) && (self.id() == project_to_compare.id())
+    else
+      false
+    end
+  end    
   
   # def self.find
 
