@@ -7,12 +7,17 @@ class Project
     @title = attributes.fetch(:title)
   end
 
-  def title
-    project = DB.exec("SELECT * FROM projects WHERE id= #{@id};").first
-    title = project.fetch('title')
-    id = project.fetch('id').to_i
-    Project.new({:title => title, :id => id})
-  end  
+  def save
+    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
+    @id = result.first().fetch("id").to_i
+  end
+
+  # def title
+  #   project = DB.exec("SELECT * FROM projects WHERE id= #{@id};").first
+  #   title = project.fetch('title')
+  #   id = project.fetch('id').to_i
+  #   Project.new({:title => title, :id => id})
+  # end  
 
   def self.all
    returned_projects = DB.exec("SELECT * FROM projects;")
@@ -27,14 +32,14 @@ class Project
 
   def ==(project_to_compare)
     if project_to_compare != nil
-      (self.title() == project_to_compare.title()) && (self.id() == project_to_compare.id())
+      self.title() == project_to_compare.title() #&& (self.id() == project_to_compare.id())
     else
       false
     end
   end    
   
-  def self.find
-    project = DB.exec("SELECT * FROM projects WHERE id =#{@id};").first
+  def self.find(id)
+    project = DB.exec("SELECT * FROM projects WHERE id =#{id};").first
     title = project.fetch('title')
     id = project.fetch('id').to_i
     Project.new({:title => title, :id => id})
@@ -44,10 +49,7 @@ class Project
     DB.exec("DELETE FROM projects *;")
   end  
 
-   def save
-    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
-    @id = result.first().fetch("id").to_i
-   end
+   
   
    def delete
     DB.exec("DELETE FROM projects WHERE id = #{@id};")
@@ -55,7 +57,7 @@ class Project
    end
   
   # def update
-
+    
   # end  
 
 end  
