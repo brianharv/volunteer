@@ -20,24 +20,24 @@ class Volunteer
     volunteers  
   end
   
-  def self.find
+  # def self.find
     
-  end
+  # end
   
-  def self.clear
+  # def self.clear
    
-  end  
+  # end  
 
-  def save
+  # def save
     
-  end
+  # end
   
-  def delete
+  # def delete
 
-  end
+  # end
   
-  def update
+  # def update
 
-  end  
+  # end  
 
 end  
