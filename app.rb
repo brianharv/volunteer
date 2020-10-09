@@ -1,13 +1,15 @@
+#!/usr/bin/evn ruby
 require('sinatra')
 require('sinatra/reloader')
 require('./lib/project')
 require('./lib/volunteer')
 require('pry')
 require('pg')
-
-DB = PG.({dbname => "volunteer_tracker"})
-
 also_reload('lib/**/*.rb')
+
+DB = PG.connect({:dbname => "volunteer_tracker"})
+
+
 
 get('/') do
   @projects = Project.all
@@ -19,14 +21,21 @@ get('/projects') do
   erb(:projects)
 end
 
+get('/projects/new') do
+  erb(:new_project)
+end 
+
 get('/projects/:id') do
-  @project = Project.find(params[:id]).to_i
+  @project = Project.find(params[:id].to_i())
   @project.volunteers
   erb(:project)
 end
 
-get('/projects/new') do
-  erb(:new_project)
+post('/projects') do
+  title = params[:project_title]
+  project = Project.new({:title => title, :id => nil})
+  project.save()
+  redirect to('/projects')
 end
 
 patch('/projects/:id') do
@@ -40,7 +49,7 @@ post('/projects/:id') do
   @project = Project.find(params[:id].to_i())
   title = params[:project_title]
   volunteer_name = params[:volunteer_name]
-  @project.update({:title = title})
+  @project.update({:title => title})
   @volunteers = @project.volunteers
   erb(:project)
 end
