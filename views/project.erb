@@ -1,0 +1,42 @@
+<h2> Project: <%= @Project.title %></h2>
+<br>
+
+<form action="/projects/<%= @project.id %>" method="post">
+<input name="_method" type="hidden" value="patch">
+  <div class="form-group">
+    <label for="project_title">Edit Project</label>
+    <input id="project_title" name="project_title" class="form-control" type="text" required>
+  </div>
+  <button type="submit" class="btn btn-success">Update Project</button>
+</form><br>
+
+<form action="/projects/<%= @project.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete Project</button>
+</form>
+
+
+<br><br>
+<br><br>
+<h3> Volunteers </h3>
+<br><br>
+  <% if @Project.volunteers.any? %>
+    <ul>
+      <% @Project.volunteers.each do |volunteer| %> 
+      <li><a href="/volunteers/<%= volunteer[0].id %>"><%= volunteer[0].name %></a></li>
+    <% end %>
+    </ul>
+  <% else %>
+    <p> This Project does not have any current volunteers. </p>  
+  <% end %> 
+
+<form action="/projects/<%=@project.id %>" method="post">
+  <div class="form-group">
+    <label for="name"> Enter Volunteer Name</label>
+    <input id="name" name="name" class="form-control" type="text" required>
+  </div>
+  <button type="submit" class="btn btn-info"> Add Volunteer</button> 
+</form><br>
+<br><br>
+
