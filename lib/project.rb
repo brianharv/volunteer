@@ -10,14 +10,7 @@ class Project
   def save
     result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
     @id = result.first().fetch("id").to_i
-  end
-
-  # def title
-  #   project = DB.exec("SELECT * FROM projects WHERE id= #{@id};").first
-  #   title = project.fetch('title')
-  #   id = project.fetch('id').to_i
-  #   Project.new({:title => title, :id => id})
-  # end  
+  end 
 
   def self.all
    returned_projects = DB.exec("SELECT * FROM projects;")
