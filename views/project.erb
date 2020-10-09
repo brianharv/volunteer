@@ -1,4 +1,4 @@
-<h2> Project: <%= @Project.title %></h2>
+<h2> Project: <%= @project.title %></h2>
 <br>
 
 <form action="/projects/<%= @project.id %>" method="post">
@@ -33,8 +33,8 @@
 
 <form action="/projects/<%=@project.id %>" method="post">
   <div class="form-group">
-    <label for="name"> Enter Volunteer Name</label>
-    <input id="name" name="name" class="form-control" type="text" required>
+    <label for="volunteer_name"> Enter Volunteer Name</label>
+    <input id="volunteer_name" name="volunteer_name" class="form-control" type="text" required>
   </div>
   <button type="submit" class="btn btn-info"> Add Volunteer</button> 
 </form><br>
