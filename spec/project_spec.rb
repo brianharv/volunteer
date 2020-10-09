@@ -68,8 +68,8 @@ describe Project do
     end
   end
 
-  describe '#volunteers' do
-    it 'returns all volunteers for a specific project' do
+  describe('#volunteers')do
+    it('returns all volunteers for a specific project')do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project.save
       volunteer1 = Volunteer.new({:name => 'Jasmine', :project_id => project.id, :id => nil})
