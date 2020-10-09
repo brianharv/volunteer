@@ -41,14 +41,12 @@ class Project
   def self.clear
     DB.exec("DELETE FROM projects *;")
   end  
-
-   
   
-   def delete
+  def delete
     DB.exec("DELETE FROM projects WHERE id = #{@id};")
-   end
+  end
   
-   def update(title)
+  def update(title)
     @title = title
     DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
   end 
