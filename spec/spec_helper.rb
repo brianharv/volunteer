@@ -6,7 +6,7 @@ require 'project'
 require 'pry'
 
 
-DB = PG.connect({:dbname => 'volunteer_tracker_test', :password => ENV['PG_PASS'] })
+DB = PG.connect({:dbname => 'volunteer_tracker_test'})
 
 RSpec.configure do |config|
   config.after(:each) do

@@ -17,7 +17,7 @@ class Project
   def self.all
    returned_projects = DB.exec("SELECT * FROM projects;")
    results = []
-   returned_projects.each do |project|
+   returned_projects.each() do |project|
     title = project.fetch('title')
     id = project.fetch('id').to_i
     results.push(Project.new({:title => title, :id => id}))
@@ -33,22 +33,26 @@ class Project
     end
   end    
   
-  # def self.find
-
-  # end
+  def self.find
+    project = DB.exec("SELECT * FROM projects WHERE id =#{@id};").first
+    title = project.fetch('title')
+    id = project.fetch('id').to_i
+    Project.new({:title => title, :id => id})
+  end
   
-  # def self.clear
-   
-  # end  
+  def self.clear
+    DB.exec("DELETE FROM projects *;")
+  end  
 
    def save
     result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
-    @id = result.first.fetch("id").to_i
+    @id = result.first().fetch("id").to_i
    end
   
-  # def delete
-
-  # end
+   def delete
+    DB.exec("DELETE FROM projects WHERE id = #{@id};")
+    DB.exec("DELETE FROM projects_volunteers WHERE project_id = #{@id};")
+   end
   
   # def update
 
