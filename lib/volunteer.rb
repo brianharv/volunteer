@@ -20,6 +20,14 @@ class Volunteer
     volunteers  
   end
   
+  def ==(volunteer_to_compare)
+    if volunteer_to_compare != nil
+      (self.name() == volunteer_to_compare.name()) && (self.id() == volunteer_to_compare.id())
+    else
+      false
+    end
+  end 
+    
   # def self.find
     
   # end
