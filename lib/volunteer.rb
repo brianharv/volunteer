@@ -36,9 +36,9 @@ class Volunteer
     Volunteer.new({:name => name, :project_id => project_id, :id => id})
   end
   
-  # def self.clear
-   
-  # end  
+  def self.clear
+    DB.exec("DELETE FROM volunteers *;")
+  end  
 
   def save
     result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")

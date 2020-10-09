@@ -56,4 +56,14 @@ describe Volunteer do
     end
   end
 
-  end
+  describe('.clear') do
+    it('clears volunteers table') do
+      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer1.save
+      volunteer2 = Volunteer.new({:name => 'Joe', :project_id => 1, :id => nil})
+      volunteer2.save
+      Volunteer.clear
+      expect(Volunteer.all).to(eq([]))
+    end
+  end      
+end
