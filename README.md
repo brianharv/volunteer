@@ -1,4 +1,4 @@
-README Temp
+
 
 # _Project Central_
 
@@ -20,7 +20,6 @@ _This app allows a user to create projects and assign volunteers to those projec
 - In terminal run <code>$ rspec</code>
 - In vscode terminal run <code>$ ruby app.rb</code>
 
-__
 
 ## Known Bugs
 
